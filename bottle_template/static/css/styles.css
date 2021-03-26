@@ -1,0 +1,55 @@
+.margin-centre {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.my-container{
+  box-shadow: 0 0 5px #555;
+  transition: 0.3;
+  
+}
+
+.my-container:hover{
+  box-shadow: 0 0 10px #555;
+
+}
+
+body
+{
+transition: background-color 1s ease-in-out;
+-moz-transition: background-color .5s ease-in-out;
+-webkit-transition: background-color .5s ease-in-out; 
+-o-transition: background-color .5s ease-in-out; 
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #28a73a; 
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+
+::selection {
+  color:white;
+  background: green;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

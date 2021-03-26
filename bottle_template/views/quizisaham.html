@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>isahamquiz</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    
+
+</head>
+<body>
+    <nav class="navbar navbar-light"  style="background-color: green;">
+        <a class="navbar-brand" href="/" style="margin-left:10px">
+          <img src="https://www.isaham.my/img/isaham-white.png" width="30" height="30">
+        </a>
+      </nav>
+    
+    <div class="container" style="margin-top: 30px;">
+        <div class="col-lg-10 offset-lg-1 justify-content-center align-self-center">
+        
+        <section class="first-screen" role="landing page">
+            <header class="logo" role="application title">
+                <p style="font-size:50px; margin-top: 80px; font-weight: lighter;" class="text-center">Kuiz Pendaftaran</p>
+        <hr>
+
+        
+            </header>
+            <div class="card"><div class="card-body"><h2 class="quiz-info" role="quiz title">
+                <p style="font-size:20px; margin-top: 30px; font-weight: lighter;">Kuiz ini mempunyai tiga soalan dan semua soalan haruslah dijawab dengan tepat untuk meneruskan permohonan akaun isaham.my.</p>
+            </h2>
+            <div class="instructions">
+                <p style="font-size:30px; margin-top: 30px; font-weight: bolder;">Arahan:</p>
+                <ul class="instruction-list">
+                    <li>Anda akan diberikan dengan tiga soalan.</li>
+                    <li>Semua soalan haruslah dijawab dengan tepat.</li>
+                    <li>Semua soalan adalah mengenai isaham.my.</li>
+                    <li>Tekan butang "Mula" jika anda sudah bersedia.</li>
+                </ul>
+            </div>
+            </div>
+            </div>
+
+            <button type="button" class="btn start-quiz-button btn-primary" style="margin-top: 1%;">
+                Mula
+            </button>
+        </section> <!--  End of Landing Page -->
+
+        <div class="card-body quiz-page" role="quiz questions">
+        </div> <!-- End of Question Page-->
+
+        <section class="quiz-answer" role="answer">
+        </section> <!-- End of Answer Page-->
+
+
+        <section class="quiz-result can-do-better" role="quiz result">
+        </section> <!--  End of Quiz Result Page -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="xyz" src="static/assets/buzz.mp3" preload="auto"></audio>
+
+    <!-- Including javascript and jQuery files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="static/js/quiz-data.js"></script>
+    <script src="static/js/script.js"></script>
+
+
+</body>
+</html>

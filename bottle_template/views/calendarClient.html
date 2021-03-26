@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+    .fc-widget-header{
+    background-color:rgb(0, 0, 0);
+}
+
+.fc-col-header-cell-cushion{
+    color:black;
+}
+
+.fc-daygrid-day-number{
+    color:black
+
+}
+
+.paginate_button{
+    margin-right: 1%;
+    color: green;
+}
+    
+</style>
+<title>Calendar</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-light"  style="background-color: green;">
+        <a class="navbar-brand" href="/" style="margin-left:10px">
+        <img src="https://www.isaham.my/img/isaham-white.png" width="30" height="30">
+        </a>
+    </nav>
+    <div class="container">
+    <div class="container">
+    <div class="container overflow-scroll mt-5">
+        <h2 class="text-center mt-3 mb-3">Bursa's Calendar</h2>           
+        <table id="example" class="table table-bordered table-responsive">
+        <thead class="text-center">
+            <tr>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Holiday</th>
+            <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            % for i in range(len(holidays)):
+            <tr>
+            <td style="width: 3cm;">{{ str(holidays.date_holiday[i])[:10] }}</td>
+            <td>{{ holidays.day_holiday[i] }}</td>
+            <td>{{ holidays.holiday_name[i] }}</td>
+            <td>{{ holidays.description[i] }}</td>
+
+            
+            </tr>
+            % end
+        </tbody>
+        
+        </table>        
+    </div>
+    </div>
+    <div class="container"><div class="container mt-5 mb-5"><div id='calendar' class="."></div></div></div>
+    <div class="container mt-5 mb-5"><div id='calendar' class="."></div></div>
+
+    <div class="container">
+        
+        <!-- The Modal add-->
+        <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add event.</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div>
+            <form action="/addHolidays" method="POST">
+            <div class="modal-body">
+                Event details
+                
+                <input type="text" class="form-control mt-1" name="date_holiday" placeholder="Date">
+                <input type="text" class="form-control mt-1" name="holiday_name" placeholder="Holiday">
+                <input type="text" class="form-control mt-1" name="states" placeholder="Description">
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" >Add</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+            </form>
+        </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <!-- The Modal delete -->
+        <div class="modal" id="modalDelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Delete event?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <form action="/deleteBursa" method="POST">
+                    <input type="hidden"  name="deleteBursa" class="delete-input">
+                    <button type="submit" class="btn btn-danger" >Delete</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </form>
+                
+            </div>
+            </form>
+        </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" href="/main.min.css">
+<script type="text/javascript">
+
+    $(".delete").on("click", function(){
+        var bursa = $(this).parents("tr").children(".holidayName").val()
+        console.log(bursa)
+        $(".delete-input").val(bursa)
+        })
+        
+    $(function() {
+    $('input[name="date_holiday"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minYear: 1901,
+    maxYear: parseInt(moment().format('YYYY'),10)
+    });
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    color: 'green',
+    headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay',
+        textColor: 'green'
+        },
+        events: [
+        % for x in range(len(calendar)):
+            {
+                title: "{{ ! calendar[x][0]}}",
+                start: '{{ calendar[x][1] }}',
+                backgroundColor: '#3cad25',
+                borderColor: '#3cad25'
+            },
+        % end
+
+        ]
+
+    });
+
+    calendar.render();
+    })
+
+    $(document).ready(function() {
+    $('#example').DataTable({
+        responsive: true,
+        "pageLength": 5,
+        "bFilter": false,
+        "lengthMenu": [ 5, 10, 25, 50, 100 ]
+    });
+
+    $(".dataTables_info").addClass("float-right")
+
+    $(".dataTables_length").addClass("float-right")
+    });
+
+
+</script>
+
+</body>
+</html>

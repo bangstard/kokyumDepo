@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Clients</title>
+<style>
+      .dataTables_filter, .dataTables_info { display: none; }
+  *:focus {
+          outline: none; }
+
+</style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: green;">
+        <a class="navbar-brand" href="#">
+            <img src="https://www.isaham.my/img/isaham-white.png" alt="" style="width: 30px;">
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+           
+        </div>
+    </nav>
+
+
+    <div class="text-center" style="margin-top: 5%; margin-bottom: 50px;">
+        <p class="text-center" style="font-size:50px; margin-bottom:50px; font-weight: lighter;">List of Reports</p>
+        <input id="myInputTextField" type="text" style="width: 60%; height: 50px; border:1px solid rgb(126, 126, 126); border-radius: 20px;  padding: 20px; font-size: 25px;" placeholder="Search Report">
+    </div>
+
+    <hr class="mx-auto" style="width:70%;">
+
+    <div style="padding:10px 2%">
+
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Assign to</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+
+                %for x in range(len(df)):
+                <tr>
+                    <td>{{df.full_name[x]}}</td>
+                    <td>{{df.description[x]}}</td>
+                    <td>{{df.category[x].capitalize()}}</td>
+                    <td>{{df.}}</td>
+                    <td>
+                        <select name="newVal" id="{{df._id[x]}}">
+                            <option value="{{df.status[x]}}">{{df.status[x].capitalize()}}</option>
+                            <option value="" disabled>------------------------</option>
+                            
+                            <option value="New">New</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </td>
+                   
+          
+                </tr>
+                %end
+
+            
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+<script>
+    $("select").on("change", function(){
+        var user_id = $(this).attr('id')
+        var newVal = $(this).val()
+
+        $.ajax({
+        data:{
+            userID: user_id,
+            newVal: newVal
+        },
+        type: 'POST',
+        url: '/testChange'
+        });
+        
+
+    })
+</script>
+
+</body>
+</html>

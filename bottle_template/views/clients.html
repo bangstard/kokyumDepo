@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Clients</title>
+<style>
+      .dataTables_filter, .dataTables_info { display: none; }
+  *:focus {
+          outline: none; }
+
+</style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: green;">
+        <a class="navbar-brand" href="#">
+            <img src="https://www.isaham.my/img/isaham-white.png" alt="" style="width: 30px;">
+        </a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+            aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+           
+        </div>
+    </nav>
+
+
+    <div class="text-center" style="margin-top: 5%; margin-bottom: 50px;">
+        <p class="text-center" style="font-size:50px; margin-bottom:50px; font-weight: lighter;">New Clients <span style="font-size: 12px;">(Today)</span> </p>
+        <input id="myInputTextField" type="text" style="width: 60%; height: 50px; border:1px solid rgb(126, 126, 126); border-radius: 20px;  padding: 20px; font-size: 25px;" placeholder="Search Client">
+    </div>
+
+    <hr class="mx-auto" style="width:70%;">
+
+    <div style="padding:10px 2%">
+
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <th>Client Code</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Date Opening</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+
+            <tbody>
+
+
+                %for x in range(len(df)):
+                <tr>
+                    <td>{{df.code[x]}}</td>
+                    <td>{{df.name[x]}}</td>
+                    <td>{{df.email[x]}}</td>
+                    <td>{{df.date_opening[x].ctime()}}</td>
+                    <td style="font-size:13px">
+                        {{df.status[x]}}
+                    </td>
+                    <td class="remarks">
+                        {{df._id[x]}}
+                    </td>
+                    <td>
+          
+                        <button  id="{{df._id[x]}}" class="btn btn-outline-success email">Email Now</button>
+
+                        <button class="done btn btn-success" style="display: none;">Emailed</button>
+                    </td>
+                </tr>
+                %end
+
+            
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script src="../static/js/paySlip.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+
+</body>
+</html>

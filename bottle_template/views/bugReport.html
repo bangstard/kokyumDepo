@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Report Bugs</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-light"  style="background-color: green;">
+        <a class="navbar-brand" href="/" style="margin-left:10px">
+          <img src="https://www.isaham.my/img/isaham-white.png" width="30" height="30">
+        </a>
+    </nav>
+
+    <div class="container" style="margin-top: 50px;">
+        <p class="text-center" style="font-size: 50px; font-weight: lighter;">Report Bug</p>
+
+        <hr>
+
+        <form action="/reportBug" method="POST">
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Fullname</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Full Name" name="fullName">
+            </div>
+
+            <label for="exampleFormControlTextarea1">Category</label>
+
+            <select class="form-control" name="category">
+                <option value="website">Website</option>
+                <option value="mobile">Mobile</option>
+                <option value="chart">Chart</option>
+            </select>
+
+
+            <div class="form-group" style="margin-top: 10px;">
+                <label for="exampleFormControlTextarea1">Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="desc"></textarea>
+            </div>
+
+            <p style="text-align: right;">
+                <input type="submit" class="btn btn-success" value="Submit">
+            </p>
+        </form>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>
